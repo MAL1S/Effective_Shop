@@ -83,7 +83,7 @@
         android:hint="Search"
         android:background="@drawable/background_search"
         android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="dp"
+        android:drawablePadding="12dp"
         android:elevation="20dp"
         android:paddingStart="24dp"
         app:layout_constraintEnd_toStartOf="@+id/main_btn_scan"

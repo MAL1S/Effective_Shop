@@ -28,6 +28,10 @@ ext.versions.androidx = [
         navigation: "2.5.2"
 ]
 
+ext.viewModelDependencies = [
+        lifecycle_viewmodel_ktx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx.lifecycle}"
+]
+
 ext.daggerDependencies = [
         dagger         : "com.google.dagger:dagger:${versions.dagger}",
         dagger_compiler: "com.google.dagger:dagger-compiler:${versions.dagger}"
