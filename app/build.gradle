@@ -32,6 +32,13 @@ android {
 }
 
 dependencies {
+    implementation project(':core_data')
+    implementation project(':core_database')
+    implementation project(':core_domain')
+    implementation project(':core_network')
+    implementation project(':core_style')
+    implementation project(':core_util')
+    implementation project(':feature_main')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'

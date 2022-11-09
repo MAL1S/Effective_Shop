@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="100dp"
-    android:elevation="20dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/item_category_iv"
-        tools:src="@android:drawable/ic_menu_compass"
-        android:layout_margin="20dp"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:elevation="20dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="100dp">
 
-</androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/item_category_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            tools:src="@android:drawable/ic_menu_compass" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/item_category_name"
+        android:textColor="@color/black"
+        android:gravity="center"
+        tools:text="Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
