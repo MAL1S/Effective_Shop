@@ -39,5 +39,7 @@ dependencies {
     kapt daggerDependencies.dagger_compiler
     implementation annotationDependencies.annotation
 
+    implementation retrofitDependencies.retrofit_converter_gson
+
     testImplementation 'junit:junit:4.13.2'
 }

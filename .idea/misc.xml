@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/drawable/background_button_buy.xml" value="0.2755" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/drawable/background_button_favorite.xml" value="0.2755" />
         <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/drawable/background_search.xml" value="0.2465" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/drawable/ic_favorite_empty.xml" value="0.2755" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/drawable/ic_favorite_full.xml" value="0.2755" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/drawable/selector_favorite.xml" value="0.2755" />
         <entry key="..\:/PROJECTS/Android/EffectiveShop/core_style/src/main/res/layout/fragment_blank.xml" value="0.371875" />
         <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/fragment_blank.xml" value="0.3578125" />
-        <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/fragment_main.xml" value="0.371875" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/fragment_main.xml" value="0.3141223053233612" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/item_best_seller.xml" value="0.42544229149115415" />
         <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/item_category.xml" value="0.37083333333333335" />
+        <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/item_hot_sale.xml" value="0.33" />
         <entry key="..\:/PROJECTS/Android/EffectiveShop/feature_main/src/main/res/layout/layout_main.xml" value="0.371875" />
       </map>
     </option>
