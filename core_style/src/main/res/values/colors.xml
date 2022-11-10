@@ -4,5 +4,6 @@
     <color name="black">#000</color>
     <color name="red_main">#FF6E4E</color>
     <color name="blue_main">#010035</color>
-    <color name="gray">#CCCCCC</color>
+    <color name="gray_dark">#B3B3C3 </color>
+    <color name="gray_light">#CCCCCC </color>
 </resources>

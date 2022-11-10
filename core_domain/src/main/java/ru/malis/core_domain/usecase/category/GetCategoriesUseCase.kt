@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class GetCategoriesUseCase @Inject constructor(
     private val categoryRepository: CategoryRepository
-): BaseUseCase<List<Category>>() {
+) {
 
-    override suspend fun invoke(): List<Category> {
+    suspend fun invoke(): List<Category> {
         return categoryRepository.getCategories()
     }
 }

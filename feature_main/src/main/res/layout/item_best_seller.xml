@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:gravity="bottom"
+            android:textColor="@color/gray_light"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/item_best_seller_tv_price_current"
             app:layout_constraintStart_toEndOf="@+id/item_best_seller_tv_price_current"

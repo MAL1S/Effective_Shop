@@ -3,10 +3,12 @@ package ru.malis.feature_main.api
 import android.app.Application
 import android.content.Context
 import ru.malis.core_domain.usecase.category.GetCategoriesUseCase
+import ru.malis.core_domain.usecase.product.GetProductUseCase
 
 interface MainDeps {
 
     val getCategoriesUseCase: GetCategoriesUseCase
+    val getProductUseCase: GetProductUseCase
 }
 
 interface MainDepsProvider {

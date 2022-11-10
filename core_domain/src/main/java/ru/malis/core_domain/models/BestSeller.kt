@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class BestSale(
+data class BestSeller(
     @PrimaryKey val id: Int? = null,
     @SerializedName("is_favorites") val isFavorites: Boolean = false,
     val title: String? = null,
