@@ -9,7 +9,18 @@ class GetCategoriesUseCase @Inject constructor(
     private val categoryRepository: CategoryRepository
 ) {
 
-    suspend fun invoke(): List<Category> {
-        return categoryRepository.getCategories()
+    suspend fun invoke(selectedId: Int? = null): List<Category> {
+        var categories = categoryRepository.getCategories()
+
+        if (selectedId == null) {
+            categories[0].isSelected = true
+        } else {
+            categories = categories.map {
+                if (it.id == selectedId) it.copy(isSelected = true)
+                else it
+            }
+        }
+
+        return categories
     }
 }
