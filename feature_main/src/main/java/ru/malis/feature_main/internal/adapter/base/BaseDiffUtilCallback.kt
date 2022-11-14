@@ -1,11 +1,11 @@
-package ru.malis.feature_main.internal.adapter.category
+package ru.malis.feature_main.internal.adapter.base
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.malis.core_domain.models.Category
+import ru.malis.core_domain.models.base.BaseIdClass
 
-internal class CategoryDiffUtilCallback(
-    private var oldList: List<Category>,
-    private var newList: List<Category>
+internal class BaseDiffUtilCallback(
+    private var oldList: List<BaseIdClass>,
+    private var newList: List<BaseIdClass>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {

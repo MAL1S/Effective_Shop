@@ -15,7 +15,12 @@
 
         <item name="mainColor">@color/red_main</item>
         <item name="secondMainColor">@color/blue_main</item>
-        <item name="textColor">@color/blue_main</item>
+        <item name="textMainColor">@color/blue_main</item>
+        <item name="textSecondColor">@color/white</item>
         <item name="selectedIconColor">@color/white</item>
+    </style>
+
+    <style name="Theme.EffectiveShop.WhiteButton" parent="Theme.EffectiveShop">
+        <item name="colorPrimary">@color/white</item>
     </style>
 </resources>

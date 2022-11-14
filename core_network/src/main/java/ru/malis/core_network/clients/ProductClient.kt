@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ProductClient {
 
-    private const val BASE_URL = "https://run.mocky.io/v3"
+    private const val BASE_URL = "https://run.mocky.io/v3/"
 
     private fun getOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()

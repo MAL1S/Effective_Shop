@@ -14,6 +14,8 @@ class ProductRepositoryImpl @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ): ProductRepository {
 
+    private var product: Product? = null
+
     override suspend fun getProductByCategory(category: Category): Product {
         return withContext(ioDispatcher) {
             productApi.getProductByCategory(category.requestName)

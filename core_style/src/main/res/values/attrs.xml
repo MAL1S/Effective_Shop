@@ -2,6 +2,7 @@
 <resources>
     <attr name="mainColor" format="color"/>
     <attr name="secondMainColor" format="color"/>
-    <attr name="textColor" format="color"/>
+    <attr name="textMainColor" format="color"/>
+    <attr name="textSecondColor" format="color"/>
     <attr name="selectedIconColor" format="color"/>
 </resources>

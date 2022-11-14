@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import ru.malis.core_domain.models.BestSeller
 import ru.malis.core_domain.models.Category
+import ru.malis.core_domain.models.HotSale
 import ru.malis.core_domain.models.Product
 import ru.malis.core_domain.usecase.category.GetCategoriesUseCase
 import ru.malis.core_domain.usecase.product.GetProductUseCase
@@ -20,9 +22,13 @@ class MainViewModel @Inject constructor(
         MutableStateFlow(emptyList())
     val categoriesSharedFlow = _categoriesSharedFlow.asSharedFlow()
 
-    private val _productSharedFlow: MutableSharedFlow<Product> =
+    private val _hotSalesSharedFlow: MutableStateFlow<List<HotSale>> =
+        MutableStateFlow(emptyList())
+    val hotSalesSharedFlow = _hotSalesSharedFlow.asSharedFlow()
+
+    private val _bestSellerSharedFlow: MutableSharedFlow<List<BestSeller>> =
         MutableSharedFlow()
-    val productSharedFlow = _productSharedFlow.asSharedFlow()
+    val bestSellerSharedFlow = _bestSellerSharedFlow.asSharedFlow()
 
     fun getCategories() {
         viewModelScope.launch {
@@ -47,7 +53,8 @@ class MainViewModel @Inject constructor(
             }
 
             if (product != null) {
-                _productSharedFlow.emit(product)
+                _hotSalesSharedFlow.emit(product.hotSale)
+                _bestSellerSharedFlow.emit(product.bestSale)
             }
         }
     }

@@ -15,7 +15,8 @@ annotation class AppScope
     modules = [
         DataModule::class,
         DatabaseModule::class,
-        CoroutineDispatcherModule::class
+        CoroutineDispatcherModule::class,
+        NetworkModule::class
     ]
 )]
 interface AppComponent : MainDeps {
