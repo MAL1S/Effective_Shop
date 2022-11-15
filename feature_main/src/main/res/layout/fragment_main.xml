@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white_light"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/main_tv_geo_place"
+        style="@style/TextGeoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_geo"
+        android:drawableEnd="@drawable/ic_arrow_down"
+        android:drawablePadding="12dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxWidth="200dp"
+        android:maxLines="1"
+        android:text="Zihuatanejo, Gro"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/main_btn_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="36dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_tv_geo_place"
+        app:layout_constraintTop_toTopOf="@id/main_tv_geo_place"
+        app:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/main_tv_select_category"
+        style="@style/TextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/select_category"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_tv_geo_place" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_btn_view_all_categories"
+        style="@style/TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end|center_vertical"
+        android:text="@string/view_all"
+        app:layout_constraintBottom_toBottomOf="@id/main_tv_select_category"
+        app:layout_constraintEnd_toEndOf="@+id/main_btn_filter"
+        app:layout_constraintTop_toTopOf="@id/main_tv_select_category"
+        app:rippleColor="@null" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_rcv_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_tv_select_category"
+        tools:listitem="@layout/item_category" />
+
+    <EditText
+        android:id="@+id/main_et_search"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="24dp"
+        android:hint="Search"
+        android:textColor="@color/blue_main"
+        style="@style/TextHint"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_search"
+        android:background="@drawable/background_search"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/main_btn_scan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_rcv_categories" />
+
+    <ImageButton
+        android:id="@+id/main_btn_scan"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/background_circle_button"
+        android:elevation="20dp"
+        android:src="@drawable/ic_scan_qr"
+        app:layout_constraintBottom_toBottomOf="@+id/main_et_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_et_search" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_et_search">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/main_tv_hot_sales"
+                    style="@style/TextTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="18dp"
+                    android:text="@string/hot_sales"
+                    android:textSize="26sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/main_btn_see_more_hot_sales"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="28dp"
+                    android:gravity="end|center_vertical"
+                    android:text="@string/see_more"
+                    app:rippleColor="@null" />
+
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_rcv_hot_sales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_tv_hot_sales"
+                tools:listitem="@layout/item_hot_sale" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/main_tv_best_seller"
+                    style="@style/TextTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="18dp"
+                    android:text="@string/best_seller"
+                    android:textSize="26sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/main_btn_see_more_best_seller"
+                    style="@style/TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="28dp"
+                    android:gravity="end|center_vertical"
+                    android:text="@string/see_more"
+                    app:rippleColor="@null" />
+
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_rcv_best_seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_tv_hot_sales"
+                tools:listitem="@layout/item_best_seller" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
