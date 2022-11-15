@@ -5,4 +5,5 @@
     <attr name="textMainColor" format="color"/>
     <attr name="textSecondColor" format="color"/>
     <attr name="selectedIconColor" format="color"/>
+    <attr name="iconColor" format="color"/>
 </resources>

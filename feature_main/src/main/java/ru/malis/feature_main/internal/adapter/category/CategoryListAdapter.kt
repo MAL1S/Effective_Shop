@@ -1,4 +1,4 @@
-package ru.malis.feature_main.internal
+package ru.malis.feature_main.internal.adapter.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,11 +24,12 @@ internal class CategoryListAdapter(
             binding.apply {
                 itemCategoryIv.setImageResource(category.image)
                 itemCategoryName.text = category.title
+                itemCategoryBackground.isActivated = category.isSelected
             }
 
             itemView.setOnClickListener(null)
             itemView.setOnClickListener {
-                onCategoryClickedListener.onClicked(category)
+                onCategoryClickedListener.onClicked(categories, category)
             }
         }
     }
@@ -50,5 +51,5 @@ internal class CategoryListAdapter(
 
 internal fun interface OnCategoryClickedListener {
 
-    fun onClicked(category: Category)
+    fun onClicked(categories: List<Category>, currentCategory: Category)
 }

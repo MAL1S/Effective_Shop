@@ -1,5 +1,6 @@
 package ru.malis.core_data.repository
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import ru.malis.core_domain.models.Category
@@ -14,11 +15,11 @@ class ProductRepositoryImpl @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ): ProductRepository {
 
-    private var product: Product? = null
-
     override suspend fun getProductByCategory(category: Category): Product {
         return withContext(ioDispatcher) {
-            productApi.getProductByCategory(category.requestName)
+            productApi.getProductByCategory(
+                category.requestName
+            )
         }
     }
 }

@@ -42,6 +42,7 @@ internal class HotSaleListAdapter(
         private fun uploadImage(url: String) {
             Glide.with(parent.context)
                 .load(url)
+                .placeholder(ru.malis.core_style.R.drawable.ic_image_placeholder)
                 .into(binding.itemHotSaleBackground)
         }
     }

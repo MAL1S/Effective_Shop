@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import ru.malis.core_domain.models.BestSeller
 import ru.malis.feature_main.databinding.ItemBestSellerBinding
+import ru.malis.core_style.R as style
 
 internal class BestSellerListAdapter(
     private val onBestSellerClickListener: OnBestSellerClickListener
@@ -29,9 +30,11 @@ internal class BestSellerListAdapter(
             binding.apply {
                 itemBestSellerTvPriceCurrent.text = bestSeller.discountPrice.toString()
                 itemBestSellerTvPriceBefore.text = bestSeller.priceWithoutDiscount.toString()
+                itemBestSellerTitle.text = bestSeller.title
+                itemBestSellerBtnFavorite.isActivated = bestSeller.isFavorites
                 
-                itemBestSellerBtnFavorite.setOnClickListener { 
-                    onBestSellerClickListener.onFavoriteClicked(bestSeller)
+                itemBestSellerBtnFavorite.setOnClickListener {
+                    onBestSellerClickListener.onFavoriteClicked(bestSellers, bestSeller)
                 }
             }
             
@@ -44,6 +47,7 @@ internal class BestSellerListAdapter(
         private fun uploadImage(url: String) {
             Glide.with(parent.context)
                 .load(url)
+                .placeholder(style.drawable.ic_image_placeholder)
                 .into(binding.itemBestSellerIvProduct)
         }
     }
@@ -67,5 +71,5 @@ internal interface OnBestSellerClickListener {
 
     fun onItemClicked(bestSeller: BestSeller)
     
-    fun onFavoriteClicked(bestSeller: BestSeller)
+    fun onFavoriteClicked(bestSellers: List<BestSeller>, checkedBestSeller: BestSeller)
 }

@@ -1,5 +1,6 @@
 package ru.malis.core_domain.usecase.product
 
+import android.util.Log
 import ru.malis.core_domain.models.Category
 import ru.malis.core_domain.models.Product
 import ru.malis.core_domain.repository.ProductRepository

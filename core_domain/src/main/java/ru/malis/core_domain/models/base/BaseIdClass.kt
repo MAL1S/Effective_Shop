@@ -1,5 +1,7 @@
 package ru.malis.core_domain.models.base
 
+import androidx.room.Ignore
+
 abstract class BaseIdClass(
-    open val id: Int? = null
+    @Transient open val id: Int? = null
 )
