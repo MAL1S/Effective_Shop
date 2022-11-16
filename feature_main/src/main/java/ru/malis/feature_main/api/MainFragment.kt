@@ -1,31 +1,41 @@
 package ru.malis.feature_main.api
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.DisplayMetrics
+import android.util.Log
+import android.view.DragEvent
+import android.view.MotionEvent
 import android.view.View
-import by.kirich1409.viewbindingdelegate.viewBinding
-import dagger.Lazy
+import android.widget.Toast
+import androidx.core.view.children
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.Lazy
 import ru.malis.core_domain.models.BestSeller
 import ru.malis.core_domain.models.Category
 import ru.malis.core_domain.models.HotSale
 import ru.malis.feature_main.R
 import ru.malis.feature_main.databinding.FragmentMainBinding
-import ru.malis.feature_main.internal.adapter.category.CategoryListAdapter
 import ru.malis.feature_main.internal.MainComponentViewModel
 import ru.malis.feature_main.internal.MainViewModel
 import ru.malis.feature_main.internal.MainViewModelFactory
 import ru.malis.feature_main.internal.adapter.base.BaseDiffUtilCallback
+import ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
 import ru.malis.feature_main.internal.adapter.bestseller.BestSellerListAdapter
 import ru.malis.feature_main.internal.adapter.bestseller.OnBestSellerClickListener
+import ru.malis.feature_main.internal.adapter.category.CategoryListAdapter
 import ru.malis.feature_main.internal.adapter.decorator.AllSpaceItemDecorator
-import ru.malis.feature_main.internal.adapter.decorator.HorizontalSpaceItemDecorator
+import ru.malis.feature_main.internal.adapter.decorator.CategorySpaceItemDecorator
+import ru.malis.feature_main.internal.adapter.decorator.CenterSmoothScroller
+import ru.malis.feature_main.internal.adapter.decorator.HotSaleSpaceItemDecorator
 import ru.malis.feature_main.internal.adapter.hotsales.HotSaleListAdapter
-import ru.malis.feature_main.internal.adapter.hotsales.OnHotSaleClickedListener
 import javax.inject.Inject
 
 
@@ -51,16 +61,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         triggerCategoriesDiffUtil(newCategories)
     }
 
-    private val lambda = { position: Int ->
-        binding.mainRcvHotSales.smoothScrollToPosition(position)
-    }
+    private val hotSaleAdapter = HotSaleListAdapter(0) {
 
-    private val hotSaleAdapter = HotSaleListAdapter(
-        {
-
-        }
-    ) { position, item ->
-        binding.mainRcvHotSales.smoothScrollToPosition(position)
     }
 
     private val bestSellerAdapter = BestSellerListAdapter(object : OnBestSellerClickListener {
@@ -102,7 +104,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun initCategories() {
         binding.mainRcvCategories.apply {
             //adapter = categoryAdapter
-            addItemDecoration(HorizontalSpaceItemDecorator())
+            addItemDecoration(CategorySpaceItemDecorator())
         }
 
         lifecycleScope.launchWhenStarted {
@@ -148,14 +150,38 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initHotSales() {
         binding.mainRcvHotSales.apply {
-            //adapter = hotSaleAdapter
             binding.mainRcvHotSales.initialize(hotSaleAdapter)
-            addItemDecoration(HorizontalSpaceItemDecorator())
+            addItemDecoration(HotSaleSpaceItemDecorator())
         }
+
+//        binding.mainRcvHotSales.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//            }
+//
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//            }
+//        })
 
         lifecycleScope.launchWhenStarted {
             mainViewModel.hotSalesSharedFlow.collect { hotSales ->
-                triggerHotSalesDiffUtil(hotSales)
+                val displayMetrics = DisplayMetrics()
+                (requireContext() as Activity).windowManager.defaultDisplay.getMetrics(
+                    displayMetrics
+                )
+                hotSaleAdapter.deviceWidth = displayMetrics.widthPixels
+
+                hotSaleAdapter.hotSales = hotSales.toMutableList()
+                binding.mainRcvHotSales.initialize(hotSaleAdapter)
+                binding.mainRcvHotSales.adapter?.notifyDataSetChanged()
+                binding.mainRcvHotSales.layoutManager?.scrollToPosition(Int.MAX_VALUE / 2)
+
+                val smoothScroller = CenterSmoothScroller(requireContext())
+                smoothScroller.targetPosition = Int.MAX_VALUE / 2
+                binding.mainRcvHotSales.layoutManager?.startSmoothScroll(
+                    smoothScroller
+                )
             }
         }
     }
@@ -203,6 +229,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
         hotSaleAdapter.hotSales = newHotSales.toMutableList()
         diffResult.dispatchUpdatesTo(hotSaleAdapter)
+        binding.mainRcvHotSales.layoutManager?.scrollToPosition(Int.MAX_VALUE / 2)
     }
 
     private fun triggerBestSellersDiffUtil(newBestSellers: List<BestSeller>) {

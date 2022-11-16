@@ -2,9 +2,13 @@ package ru.malis.feature_main.internal.adapter.base
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.malis.feature_main.internal.adapter.decorator.CenterSmoothScroller
+import kotlin.math.abs
 import kotlin.math.pow
+
 
 class HorizontalCarouselRecyclerView(
     context: Context,
@@ -16,13 +20,25 @@ class HorizontalCarouselRecyclerView(
         newAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onChanged() {
                 post {
-                    val sidePadding = (width / 2) - (getChildAt(0).width / 2)
-                    setPadding(sidePadding, 0, sidePadding, 0)
-                    scrollToPosition(0)
                     addOnScrollListener(object : OnScrollListener() {
                         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                             super.onScrolled(recyclerView, dx, dy)
                             onScrollChanged()
+                        }
+
+                        override fun onScrollStateChanged(
+                            recyclerView: RecyclerView,
+                            newState: Int
+                        ) {
+                            super.onScrollStateChanged(recyclerView, newState)
+
+                            if (newState == SCROLL_STATE_IDLE) {
+                                val smoothScroller = CenterSmoothScroller(context)
+                                smoothScroller.targetPosition = findViewToScrollToCenter()
+                                layoutManager?.startSmoothScroll(
+                                    smoothScroller
+                                )
+                            }
                         }
                     })
                 }
@@ -31,12 +47,32 @@ class HorizontalCarouselRecyclerView(
         adapter = newAdapter
     }
 
+    private fun findViewToScrollToCenter(): Int {
+        val firstCompletelyVisibleItemPosition =
+            (layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+
+        if (firstCompletelyVisibleItemPosition != -1) {
+            return firstCompletelyVisibleItemPosition
+        }
+
+        val first = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+        val last = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+        val childFirst = getChildAt(0)
+        val childLast = getChildAt(childCount-1)
+
+        return if (childFirst.right > (right - childLast.left)) {
+            first
+        } else last
+    }
+
     private fun onScrollChanged() {
         post {
             (0 until childCount).forEach { position ->
                 val child = getChildAt(position)
                 val childCenterX = (child.left + child.right) / 2
-                val scaleValue = getGaussianScale(childCenterX, 1f, 1f, 150.toDouble())
+                var scaleValue = getGaussianScale(childCenterX, 1f, 1f, 150.toDouble()) - 0.1f
+                if (scaleValue > 1f) scaleValue = 1f
                 child.scaleX = scaleValue
                 child.scaleY = scaleValue
             }
