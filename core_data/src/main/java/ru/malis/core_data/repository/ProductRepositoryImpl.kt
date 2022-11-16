@@ -18,7 +18,7 @@ class ProductRepositoryImpl @Inject constructor(
     override suspend fun getProductByCategory(category: Category): Product {
         return withContext(ioDispatcher) {
             productApi.getProductByCategory(
-                category.requestName
+                //category.requestName
             )
         }
     }

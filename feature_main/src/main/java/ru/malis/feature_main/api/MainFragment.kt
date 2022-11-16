@@ -2,7 +2,6 @@ package ru.malis.feature_main.api
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -26,6 +25,7 @@ import ru.malis.feature_main.internal.adapter.bestseller.OnBestSellerClickListen
 import ru.malis.feature_main.internal.adapter.decorator.AllSpaceItemDecorator
 import ru.malis.feature_main.internal.adapter.decorator.HorizontalSpaceItemDecorator
 import ru.malis.feature_main.internal.adapter.hotsales.HotSaleListAdapter
+import ru.malis.feature_main.internal.adapter.hotsales.OnHotSaleClickedListener
 import javax.inject.Inject
 
 
@@ -51,8 +51,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         triggerCategoriesDiffUtil(newCategories)
     }
 
-    private val hotSaleAdapter = HotSaleListAdapter {
-        //TODO: open hot sale product
+    private val lambda = { position: Int ->
+        binding.mainRcvHotSales.smoothScrollToPosition(position)
+    }
+
+    private val hotSaleAdapter = HotSaleListAdapter(
+        {
+
+        }
+    ) { position, item ->
+        binding.mainRcvHotSales.smoothScrollToPosition(position)
     }
 
     private val bestSellerAdapter = BestSellerListAdapter(object : OnBestSellerClickListener {
@@ -93,7 +101,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initCategories() {
         binding.mainRcvCategories.apply {
-            adapter = categoryAdapter
+            //adapter = categoryAdapter
             addItemDecoration(HorizontalSpaceItemDecorator())
         }
 
@@ -140,7 +148,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initHotSales() {
         binding.mainRcvHotSales.apply {
-            adapter = hotSaleAdapter
+            //adapter = hotSaleAdapter
+            binding.mainRcvHotSales.initialize(hotSaleAdapter)
             addItemDecoration(HorizontalSpaceItemDecorator())
         }
 
@@ -158,6 +167,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             layoutManager = GridLayoutManager(requireContext(), 2)
             addItemDecoration(AllSpaceItemDecorator())
         }
+
 
         lifecycleScope.launchWhenStarted {
             mainViewModel.bestSellerSharedFlow.collect { bestSellers ->

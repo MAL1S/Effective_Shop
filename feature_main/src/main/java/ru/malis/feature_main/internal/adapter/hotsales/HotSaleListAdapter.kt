@@ -11,7 +11,8 @@ import ru.malis.core_domain.models.HotSale
 import ru.malis.feature_main.databinding.ItemHotSaleBinding
 
 internal class HotSaleListAdapter(
-    private val onHotSalesClickedListener: OnHotSaleClickedListener
+    private val onHotSalesClickedListener: OnHotSaleClickedListener,
+    val itemClick: (position:Int,item: HotSale) -> Unit
 ): RecyclerView.Adapter<HotSaleListAdapter.HotSaleViewHolder>() {
 
     inner class HotSaleViewHolder(
@@ -57,6 +58,9 @@ internal class HotSaleListAdapter(
     override fun onBindViewHolder(holder: HotSaleViewHolder, position: Int) {
         val hotSale = hotSales[position]
         holder.bind(hotSale)
+        holder.itemView.setOnClickListener {
+            itemClick(position, hotSales[position])
+        }
     }
 
     override fun getItemCount(): Int = hotSales.size
