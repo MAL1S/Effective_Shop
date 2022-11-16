@@ -53,6 +53,8 @@ class MainViewModel @Inject constructor(
                 null
             }
 
+            Log.d("testing", "$product")
+
             if (product != null) {
                 _hotSalesSharedFlow.emit(product.hotSale)
                 _bestSellerSharedFlow.emit(product.bestSale)

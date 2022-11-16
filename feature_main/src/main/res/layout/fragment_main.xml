@@ -62,11 +62,13 @@
         app:layout_constraintTop_toTopOf="@id/main_tv_select_category"
         app:rippleColor="@null" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
         android:id="@+id/main_rcv_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,11 +148,13 @@
 
             </FrameLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
                 android:id="@+id/main_rcv_hot_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -1,16 +1,21 @@
 package ru.malis.feature_main.internal.adapter.hotsales
 
+import android.app.Activity
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.malis.feature_main.R
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import ru.malis.core_domain.models.HotSale
+import ru.malis.core_util.dimens.toDp
+import ru.malis.feature_main.R
 import ru.malis.feature_main.databinding.ItemHotSaleBinding
 
+
 internal class HotSaleListAdapter(
+    var deviceWidth: Int,
     private val onHotSalesClickedListener: OnHotSaleClickedListener
 ): RecyclerView.Adapter<HotSaleListAdapter.HotSaleViewHolder>() {
 
@@ -55,11 +60,16 @@ internal class HotSaleListAdapter(
     }
 
     override fun onBindViewHolder(holder: HotSaleViewHolder, position: Int) {
-        val hotSale = hotSales[position]
-        holder.bind(hotSale)
+        if (hotSales.size != 0) {
+            val hotSale = hotSales[position % hotSales.size]
+            holder.bind(hotSale)
+
+            holder.itemView.layoutParams.width = (deviceWidth * 0.75).toInt()
+        }
     }
 
-    override fun getItemCount(): Int = hotSales.size
+    //override fun getItemCount(): Int = hotSales.size
+    override fun getItemCount(): Int = Int.MAX_VALUE
 }
 
 internal fun interface OnHotSaleClickedListener {

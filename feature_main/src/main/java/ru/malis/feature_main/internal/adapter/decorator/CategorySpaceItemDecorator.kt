@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.malis.core_style.R as style
 
-class AllSpaceItemDecorator: RecyclerView.ItemDecoration() {
+class CategorySpaceItemDecorator: RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -15,10 +15,9 @@ class AllSpaceItemDecorator: RecyclerView.ItemDecoration() {
     ) {
         val horizontalDp = parent.context.resources.getDimension(style.dimen.categoryListHorizontalMargin).toInt()
 
-        if (parent.adapter?.itemCount != null && parent.getChildAdapterPosition(view) % 2 == 0) {
+        if (parent.adapter?.itemCount != null && parent.getChildAdapterPosition(view) == 0) {
             outRect.left = horizontalDp
         }
         outRect.right = horizontalDp
-        outRect.bottom = horizontalDp
     }
 }
