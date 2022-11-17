@@ -8,5 +8,6 @@
     <color name="blue_main">#010035</color>
     <color name="gray_dark">#B3B3C3</color>
     <color name="gray_light">#CCCCCC</color>
+    <color name="gray_light_2">#DCDCDC</color>
     <color name="white_light">#F8F8F8</color>
 </resources>

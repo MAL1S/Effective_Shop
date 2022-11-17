@@ -24,4 +24,9 @@
     <style name="Theme.EffectiveShop.WhiteButton" parent="Theme.EffectiveShop">
         <item name="colorPrimary">@color/white</item>
     </style>
+
+    <style name="DialogTheme.Transparent" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

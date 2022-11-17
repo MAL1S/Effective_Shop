@@ -7,4 +7,9 @@
     <string name="sale_new">New</string>
     <string name="buy_now">Buy now!</string>
     <string name="search">Search</string>
+    <string name="done">Done</string>
+    <string name="filter_options">Filter options</string>
+    <string name="brand">Brand</string>
+    <string name="price">Price</string>
+    <string name="size">Size</string>
 </resources>

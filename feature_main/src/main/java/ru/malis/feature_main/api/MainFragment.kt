@@ -1,21 +1,18 @@
 package ru.malis.feature_main.api
 
+import android.R.attr.button
 import android.app.Activity
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
-import android.view.DragEvent
-import android.view.MotionEvent
+import android.view.TouchDelegate
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.Lazy
 import ru.malis.core_domain.models.BestSeller
@@ -27,7 +24,6 @@ import ru.malis.feature_main.internal.MainComponentViewModel
 import ru.malis.feature_main.internal.MainViewModel
 import ru.malis.feature_main.internal.MainViewModelFactory
 import ru.malis.feature_main.internal.adapter.base.BaseDiffUtilCallback
-import ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
 import ru.malis.feature_main.internal.adapter.bestseller.BestSellerListAdapter
 import ru.malis.feature_main.internal.adapter.bestseller.OnBestSellerClickListener
 import ru.malis.feature_main.internal.adapter.category.CategoryListAdapter
@@ -99,6 +95,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun init() {
         initCategories()
         initProduct()
+        initFilters()
     }
 
     private fun initCategories() {
@@ -153,16 +150,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             binding.mainRcvHotSales.initialize(hotSaleAdapter)
             addItemDecoration(HotSaleSpaceItemDecorator())
         }
-
-//        binding.mainRcvHotSales.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//                super.onScrollStateChanged(recyclerView, newState)
-//            }
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//            }
-//        })
 
         lifecycleScope.launchWhenStarted {
             mainViewModel.hotSalesSharedFlow.collect { hotSales ->
@@ -237,5 +224,28 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
         bestSellerAdapter.bestSellers = newBestSellers.toMutableList()
         diffResult.dispatchUpdatesTo(bestSellerAdapter)
+    }
+
+    private fun initFilters() {
+        val parent = binding.mainBtnFilter.parent as View
+        parent.post {
+            val rect = Rect()
+            binding.mainBtnFilter.getHitRect(rect)
+            rect.top -= 40
+            rect.left -= 40
+            rect.bottom += 40
+            rect.right += 40
+            parent.touchDelegate = TouchDelegate(rect, binding.mainBtnFilter)
+        }
+
+        binding.mainBtnFilter.setOnClickListener {
+            val filterBottomSheetDialogFragment = FilterBottomSheetDialogFragment(
+                brands = listOf("Samsung", "Iphone", "OnePlus"),
+                prices = listOf("$300 - $500", "$500 - $700", "$700 - $1000"),
+                sizes = listOf("4.5 to 5.5 inches", "5.5 to 6.5 inches", "6.5 to 7.5 inches"),
+            )
+            filterBottomSheetDialogFragment.dialog?.setCanceledOnTouchOutside(true)
+            filterBottomSheetDialogFragment.show(parentFragmentManager, "bottom_sheet_filter")
+        }
     }
 }
