@@ -8,16 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.android.material.textfield.TextInputLayout
 import ru.malis.feature_main.R
 import ru.malis.feature_main.databinding.FragmentBottomSheetFilterBinding
 
 class FilterBottomSheetDialogFragment(
-    private val data: List<String>
+    private val brands: List<String>,
+    private val prices: List<String>,
+    private val sizes: List<String>,
 ) : BottomSheetDialogFragment() {
 
     private val binding by viewBinding(FragmentBottomSheetFilterBinding::bind)
@@ -42,26 +46,63 @@ class FilterBottomSheetDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initDropDown()
+        init()
     }
 
-    private fun initDropDown() {
-        initBrandDropDown()
-    }
-
-    private fun initBrandDropDown() {
-        val adapter = ArrayAdapter(
-            requireContext(), R.layout.item_drop_down, data
+    private fun init() {
+        initDropDown(
+            binding.filterDropdownBrand,
+            binding.filterDropdownBrandContainer,
+            brands
         )
-        binding.filterDropdownBrand.apply {
-            setText(data[0])
+        initDropDown(
+            binding.filterDropdownPrice,
+            binding.filterDropdownPriceContainer,
+            prices
+        )
+        initDropDown(
+            binding.filterDropdownSize,
+            binding.filterDropdownSizeContainer,
+            sizes
+        )
+
+        initDoneButton()
+        initBackButton()
+    }
+
+    private fun initDoneButton() {
+        binding.filterBtnDone.setOnClickListener {
+            //TODO: do applying filters logic
+            dialog?.dismiss()
+        }
+    }
+
+    private fun initBackButton() {
+        binding.filterBtnCancel.setOnClickListener {
+            dialog?.dismiss()
+        }
+    }
+
+    private fun initDropDown(
+        dropDown: AutoCompleteTextView,
+        dropDownContainer: TextInputLayout,
+        items: List<String>
+    ) {
+        val adapter = ArrayAdapter(
+            requireContext(), R.layout.item_drop_down, items
+        )
+        dropDown.apply {
+            if (items.isNotEmpty()) {
+                setText(items[0])
+            }
             setAdapter(adapter)
             setOnItemClickListener { parent, view, position, id ->
-                //binding.filterDropdownBrandContainer.hint = brands[position]
+                dropDownContainer.isActivated = false
             }
 
-            setOnFocusChangeListener { v, hasFocus ->
-                binding.filterDropdownBrandContainer.isActivated = true
+            setOnClickListener {
+                Toast.makeText(requireContext(), "FOCUS", Toast.LENGTH_SHORT).show()
+                dropDownContainer.isActivated = !dropDownContainer.isActivated
             }
         }
     }

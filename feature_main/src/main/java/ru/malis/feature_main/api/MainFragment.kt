@@ -239,7 +239,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         binding.mainBtnFilter.setOnClickListener {
-            val filterBottomSheetDialogFragment = FilterBottomSheetDialogFragment(listOf())
+            val filterBottomSheetDialogFragment = FilterBottomSheetDialogFragment(
+                brands = listOf("Samsung", "Iphone", "OnePlus"),
+                prices = listOf("$300 - $500", "$500 - $700", "$700 - $1000"),
+                sizes = listOf("4.5 to 5.5 inches", "5.5 to 6.5 inches", "6.5 to 7.5 inches"),
+            )
             filterBottomSheetDialogFragment.dialog?.setCanceledOnTouchOutside(true)
             filterBottomSheetDialogFragment.show(parentFragmentManager, "bottom_sheet_filter")
         }
