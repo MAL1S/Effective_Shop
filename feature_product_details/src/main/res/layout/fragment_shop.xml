@@ -53,7 +53,7 @@
         android:id="@+id/shop_iv_ram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_ram"
+        android:src="@drawable/img_ram"
         app:layout_constraintBottom_toBottomOf="@+id/shop_iv_processor"
         app:layout_constraintEnd_toStartOf="@+id/shop_iv_memory_card"
         app:layout_constraintHorizontal_bias="0.5"
