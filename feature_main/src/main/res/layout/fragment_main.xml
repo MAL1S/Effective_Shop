@@ -62,7 +62,7 @@
         app:layout_constraintTop_toTopOf="@id/main_tv_select_category"
         app:rippleColor="@null" />
 
-    <ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
+    <ru.malis.feature_main.api.HorizontalCarouselRecyclerView
         android:id="@+id/main_rcv_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
 
             </FrameLayout>
 
-            <ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
+            <ru.malis.feature_main.api.HorizontalCarouselRecyclerView
                 android:id="@+id/main_rcv_hot_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -203,6 +203,5 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

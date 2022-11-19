@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".api.ProductDetailsFragment">
+
+    <ImageButton
+        android:id="@+id/product_details_btn_back"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_btn_cancel"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
+
+    <TextView
+        style="@style/TextTitle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/product_details"
+        app:layout_constraintBottom_toBottomOf="@+id/product_details_btn_back"
+        app:layout_constraintEnd_toStartOf="@+id/product_details_btn_cart"
+        app:layout_constraintStart_toEndOf="@+id/product_details_btn_back"
+        app:layout_constraintTop_toTopOf="@+id/product_details_btn_back" />
+
+    <ImageButton
+        android:id="@+id/product_details_btn_cart"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/background_btn_main"
+        android:src="@drawable/ic_shop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
+
+    <ru.malis.feature_main.api.HorizontalCarouselRecyclerView
+        android:id="@+id/product_details_carousel_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_details_btn_back" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_bottom_sheet"
+        android:elevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/product_details_carousel_images">
+
+        <TextView
+            android:id="@+id/product_details_name"
+            style="@style/TextTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Galaxy Note 20 Ultra" />
+
+        <ImageButton
+            android:id="@+id/product_details_btn_favorite"
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="38dp"
+            android:background="@drawable/background_btn_cancel"
+            android:src="@drawable/ic_favorite_empty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <RatingBar
+            android:id="@+id/product_details_rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/orange"
+            android:secondaryProgressTint="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="@+id/product_details_name"
+            app:layout_constraintTop_toBottomOf="@+id/product_details_name"
+            tools:rating="4" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/product_details_tab_layout"
+            android:layout_width="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_details_rating_bar"
+            android:layout_height="wrap_content"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/product_details_view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_details_tab_layout"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package ru.malis.feature_main.api
 
-import android.R.attr.button
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
@@ -23,7 +22,6 @@ import ru.malis.feature_main.databinding.FragmentMainBinding
 import ru.malis.feature_main.internal.MainComponentViewModel
 import ru.malis.feature_main.internal.MainViewModel
 import ru.malis.feature_main.internal.MainViewModelFactory
-import ru.malis.feature_main.internal.adapter.base.BaseDiffUtilCallback
 import ru.malis.feature_main.internal.adapter.bestseller.BestSellerListAdapter
 import ru.malis.feature_main.internal.adapter.bestseller.OnBestSellerClickListener
 import ru.malis.feature_main.internal.adapter.category.CategoryListAdapter

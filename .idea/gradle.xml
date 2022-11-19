@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core_style" />
             <option value="$PROJECT_DIR$/core_util" />
             <option value="$PROJECT_DIR$/feature_main" />
+            <option value="$PROJECT_DIR$/feature_product_details" />
           </set>
         </option>
       </GradleProjectSettings>
