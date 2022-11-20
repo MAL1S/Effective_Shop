@@ -18,7 +18,7 @@ internal class ProductDetailsViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _productDetailsSharedFlow = MutableSharedFlow<ProductDetails?>()
-    private val productDetailsSharedFlow = _productDetailsSharedFlow.asSharedFlow()
+    val productDetailsSharedFlow = _productDetailsSharedFlow.asSharedFlow()
 
     fun getProductDetails() {
         viewModelScope.launch {

@@ -1,4 +1,4 @@
-package ru.malis.feature_main.internal.adapter.decorator
+package ru.malis.core_base
 
 import android.graphics.Rect
 import android.view.View
