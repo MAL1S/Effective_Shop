@@ -1,4 +1,4 @@
-package ru.malis.feature_main.internal.adapter.decorator
+package ru.malis.core_base
 
 import android.content.Context
 import android.util.DisplayMetrics

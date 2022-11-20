@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white" />
 
-    <ru.malis.feature_main.api.HorizontalCarouselRecyclerView
+    <ru.malis.core_base.HorizontalCarouselRecyclerView
         android:id="@+id/product_details_carousel_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

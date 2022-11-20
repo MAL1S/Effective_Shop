@@ -1,9 +1,9 @@
-package ru.malis.feature_main.api
+package ru.malis.core_base
 
 import androidx.recyclerview.widget.DiffUtil
 import ru.malis.core_domain.models.base.BaseIdClass
 
-internal class BaseDiffUtilCallback(
+class BaseDiffUtilCallback(
     private var oldList: List<BaseIdClass>,
     private var newList: List<BaseIdClass>
 ) : DiffUtil.Callback() {

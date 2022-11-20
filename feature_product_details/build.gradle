@@ -40,7 +40,7 @@ dependencies {
     implementation project(':core_style')
     implementation project(':core_domain')
     implementation project(':core_util')
-    implementation project(':feature_main')
+    implementation project(':core_base')
 
     implementation viewBindingDependencies.viewBinding
 

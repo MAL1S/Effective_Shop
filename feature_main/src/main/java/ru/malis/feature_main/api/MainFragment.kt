@@ -5,15 +5,19 @@ import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.TouchDelegate
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.Lazy
+import ru.malis.core_base.BaseDiffUtilCallback
 import ru.malis.core_domain.models.BestSeller
 import ru.malis.core_domain.models.Category
 import ru.malis.core_domain.models.HotSale
@@ -27,7 +31,7 @@ import ru.malis.feature_main.internal.adapter.bestseller.OnBestSellerClickListen
 import ru.malis.feature_main.internal.adapter.category.CategoryListAdapter
 import ru.malis.feature_main.internal.adapter.decorator.AllSpaceItemDecorator
 import ru.malis.feature_main.internal.adapter.decorator.CategorySpaceItemDecorator
-import ru.malis.feature_main.internal.adapter.decorator.CenterSmoothScroller
+import ru.malis.core_base.CenterSmoothScroller
 import ru.malis.feature_main.internal.adapter.decorator.HotSaleSpaceItemDecorator
 import ru.malis.feature_main.internal.adapter.hotsales.HotSaleListAdapter
 import javax.inject.Inject
@@ -61,7 +65,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val bestSellerAdapter = BestSellerListAdapter(object : OnBestSellerClickListener {
         override fun onItemClicked(bestSeller: BestSeller) {
-            //TODO: best seller item
+            mainViewModel.navigateToProductDetails(this@MainFragment)
         }
 
         override fun onFavoriteClicked(
@@ -90,10 +94,32 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         init()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        binding.mainRcvHotSales.layoutManager?.scrollToPosition(Int.MAX_VALUE / 2)
+
+        val smoothScroller = CenterSmoothScroller(requireContext())
+        smoothScroller.targetPosition = Int.MAX_VALUE / 2
+        binding.mainRcvHotSales.layoutManager?.startSmoothScroll(
+            smoothScroller
+        )
+    }
+
     private fun init() {
         initCategories()
         initProduct()
         initFilters()
+        initNavigation()
+    }
+
+    private fun initNavigation() {
+        binding.bottomNav.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.cart -> binding.mainBottomNav.visibility = View.GONE
+//            }
+            false
+        }
     }
 
     private fun initCategories() {
@@ -203,14 +229,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun triggerCategoriesDiffUtil(newCategories: List<Category>) {
-        val diffUtilCallback = BaseDiffUtilCallback(categoryAdapter.categories, newCategories)
+        val diffUtilCallback =
+            BaseDiffUtilCallback(categoryAdapter.categories, newCategories)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
         categoryAdapter.categories = newCategories.toMutableList()
         diffResult.dispatchUpdatesTo(categoryAdapter)
     }
 
     private fun triggerHotSalesDiffUtil(newHotSales: List<HotSale>) {
-        val diffUtilCallback = BaseDiffUtilCallback(hotSaleAdapter.hotSales, newHotSales)
+        val diffUtilCallback =
+            BaseDiffUtilCallback(hotSaleAdapter.hotSales, newHotSales)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
         hotSaleAdapter.hotSales = newHotSales.toMutableList()
         diffResult.dispatchUpdatesTo(hotSaleAdapter)
@@ -218,7 +246,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun triggerBestSellersDiffUtil(newBestSellers: List<BestSeller>) {
-        val diffUtilCallback = BaseDiffUtilCallback(hotSaleAdapter.hotSales, newBestSellers)
+        val diffUtilCallback =
+            BaseDiffUtilCallback(hotSaleAdapter.hotSales, newBestSellers)
         val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
         bestSellerAdapter.bestSellers = newBestSellers.toMutableList()
         diffResult.dispatchUpdatesTo(bestSellerAdapter)

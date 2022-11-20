@@ -9,6 +9,7 @@ import ru.malis.core_domain.usecase.product.GetProductUseCase
 interface ProductDetailsDeps {
 
     val getProductDetailsUseCase: GetProductDetailsUseCase
+    val productDetailsNavigation: ProductDetailsNavigation
 }
 
 interface ProductDetailsDepsProvider {
@@ -19,6 +20,6 @@ interface ProductDetailsDepsProvider {
 val Context.productDetailsDepsProvider: ProductDetailsDepsProvider
     get() = when (this) {
         is ProductDetailsDepsProvider -> this
-        is Application -> error("Application must implement MainDepsProvider")
+        is Application -> error("Application must implement ProductDetailsDepsProvider")
         else -> applicationContext.productDetailsDepsProvider
     }

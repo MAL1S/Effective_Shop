@@ -9,9 +9,12 @@ import java.lang.Exception
 import javax.inject.Inject
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import ru.malis.feature_product_details.api.ProductDetailsFragment
+import ru.malis.feature_product_details.api.ProductDetailsNavigation
 
 internal class ProductDetailsViewModel @Inject constructor(
-    private val getProductDetailsUseCase: GetProductDetailsUseCase
+    private val getProductDetailsUseCase: GetProductDetailsUseCase,
+    private val productDetailsNavigation: ProductDetailsNavigation
 ): ViewModel() {
 
     private val _productDetailsSharedFlow = MutableSharedFlow<ProductDetails?>()
@@ -27,5 +30,9 @@ internal class ProductDetailsViewModel @Inject constructor(
 
             _productDetailsSharedFlow.emit(productDetails)
         }
+    }
+
+    fun navigateBack(fragment: ProductDetailsFragment) {
+        productDetailsNavigation.navigateBackToMain(fragment)
     }
 }

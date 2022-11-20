@@ -1,10 +1,9 @@
-package ru.malis.feature_main.api
+package ru.malis.core_base
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.malis.feature_main.internal.adapter.decorator.CenterSmoothScroller
 import kotlin.math.pow
 
 
