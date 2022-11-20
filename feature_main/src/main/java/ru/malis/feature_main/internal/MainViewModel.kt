@@ -11,12 +11,15 @@ import ru.malis.core_domain.models.HotSale
 import ru.malis.core_domain.models.Product
 import ru.malis.core_domain.usecase.category.GetCategoriesUseCase
 import ru.malis.core_domain.usecase.product.GetProductUseCase
+import ru.malis.feature_main.api.MainFragment
+import ru.malis.feature_main.api.MainNavigation
 import java.lang.Exception
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
-    private val getProductUseCase: GetProductUseCase
+    private val getProductUseCase: GetProductUseCase,
+    private val mainNavigation: MainNavigation
 ) : ViewModel() {
 
     private val _categoriesSharedFlow: MutableStateFlow<List<Category>> =
@@ -60,5 +63,9 @@ class MainViewModel @Inject constructor(
                 _bestSellerSharedFlow.emit(product.bestSale)
             }
         }
+    }
+
+    fun navigateToProductDetails(fragment: MainFragment) {
+        mainNavigation.navigateToProductDetails(fragment, 0)
     }
 }

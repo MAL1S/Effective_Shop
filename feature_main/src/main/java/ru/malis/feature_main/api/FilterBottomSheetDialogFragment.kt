@@ -101,7 +101,6 @@ class FilterBottomSheetDialogFragment(
             }
 
             setOnClickListener {
-                Toast.makeText(requireContext(), "FOCUS", Toast.LENGTH_SHORT).show()
                 dropDownContainer.isActivated = !dropDownContainer.isActivated
             }
         }

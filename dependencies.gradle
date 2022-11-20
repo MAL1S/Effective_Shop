@@ -13,6 +13,7 @@ ext.versions = [
         viewBinding         : "1.4.7",
         room                : "2.4.3",
         retrofit            : "2.9.0",
+        flexbox             : "3.0.0",
 ]
 
 ext.versions.androidx = [
@@ -78,4 +79,8 @@ ext.androidxNavigationDependencies = [
 
 ext.gsonDependencies = [
         gson: "com.google.code.gson:gson:${versions.gson}"
+]
+
+ext.flexBoxDependencies = [
+        flexbox: "com.google.android.flexbox:flexbox:${versions.flexbox}"
 ]

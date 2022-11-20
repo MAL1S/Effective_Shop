@@ -5,6 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import ru.malis.effectiveshop.MainActivity
 import ru.malis.feature_main.api.MainDeps
+import ru.malis.feature_product_details.api.ProductDetailsDeps
 import javax.inject.Qualifier
 import javax.inject.Scope
 
@@ -16,10 +17,11 @@ annotation class AppScope
         DataModule::class,
         DatabaseModule::class,
         CoroutineDispatcherModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        NavigationModule::class
     ]
 )]
-interface AppComponent : MainDeps {
+interface AppComponent : MainDeps, ProductDetailsDeps {
 
     @Component.Factory
     interface Factory {

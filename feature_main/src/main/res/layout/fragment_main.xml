@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white_light"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white_light">
 
     <TextView
         android:id="@+id/main_tv_geo_place"
@@ -62,14 +62,14 @@
         app:layout_constraintTop_toTopOf="@id/main_tv_select_category"
         app:rippleColor="@null" />
 
-    <ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
+    <ru.malis.core_base.HorizontalCarouselRecyclerView
         android:id="@+id/main_rcv_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:clipToPadding="false"
-        android:overScrollMode="never"
         android:orientation="horizontal"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,19 +78,19 @@
 
     <EditText
         android:id="@+id/main_et_search"
+        style="@style/TextHint"
         android:layout_width="0dp"
         android:layout_height="36dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="10dp"
-        android:paddingStart="24dp"
-        android:hint="Search"
-        android:textColor="@color/blue_main"
-        style="@style/TextHint"
-        android:drawablePadding="12dp"
-        android:drawableStart="@drawable/ic_search"
         android:background="@drawable/background_search"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="12dp"
         android:elevation="20dp"
+        android:hint="Search"
+        android:paddingStart="24dp"
+        android:textColor="@color/blue_main"
         app:layout_constraintEnd_toStartOf="@+id/main_btn_scan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_rcv_categories" />
@@ -108,10 +108,11 @@
         app:layout_constraintTop_toTopOf="@+id/main_et_search" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_et_search">
@@ -148,14 +149,14 @@
 
             </FrameLayout>
 
-            <ru.malis.feature_main.internal.adapter.base.HorizontalCarouselRecyclerView
+            <ru.malis.core_base.HorizontalCarouselRecyclerView
                 android:id="@+id/main_rcv_hot_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
-                android:overScrollMode="never"
                 android:orientation="horizontal"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,5 +205,16 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_bottom_nav"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

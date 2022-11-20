@@ -9,6 +9,7 @@ interface MainDeps {
 
     val getCategoriesUseCase: GetCategoriesUseCase
     val getProductUseCase: GetProductUseCase
+    val mainNavigation: MainNavigation
 }
 
 interface MainDepsProvider {

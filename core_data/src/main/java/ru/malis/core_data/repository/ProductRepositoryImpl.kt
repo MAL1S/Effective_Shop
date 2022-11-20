@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import ru.malis.core_domain.models.Category
 import ru.malis.core_domain.models.Product
+import ru.malis.core_domain.models.ProductDetails
 import ru.malis.core_domain.repository.ProductRepository
 import ru.malis.core_network.api.ProductApi
 import ru.malis.core_util.coroutinedispatchers.IoDispatcher
@@ -20,6 +21,12 @@ class ProductRepositoryImpl @Inject constructor(
             productApi.getProductByCategory(
                 //category.requestName
             )
+        }
+    }
+
+    override suspend fun getProductDetails(): ProductDetails {
+        return withContext(ioDispatcher) {
+            productApi.getProductDetails()
         }
     }
 }
