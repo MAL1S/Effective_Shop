@@ -80,6 +80,10 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         binding.productDetailsBtnCart.setOnClickListener {
             productDetailsViewModel.navigateToCart(this)
         }
+
+        binding.productDetailsBtnFavorite.setOnClickListener {
+            binding.productDetailsBtnFavorite.isActivated = !binding.productDetailsBtnFavorite.isActivated
+        }
     }
 
     private fun initProductImages() {
@@ -112,6 +116,10 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                 binding.productDetailsName.text = product?.title
                 if (product?.rating != null) {
                     binding.productDetailsRatingBar.rating = product.rating!!
+                }
+
+                if (product?.isFavorites != null) {
+                    binding.productDetailsBtnFavorite.isActivated = product.isFavorites
                 }
             }
         }
