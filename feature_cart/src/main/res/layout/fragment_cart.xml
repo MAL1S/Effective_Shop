@@ -7,8 +7,8 @@
 
     <ImageButton
         android:id="@+id/product_details_btn_back"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="@dimen/backButtonSize"
+        android:layout_height="@dimen/backButtonSize"
         android:layout_marginStart="42dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/background_btn_cancel"
@@ -33,8 +33,8 @@
 
     <ImageButton
         android:id="@+id/product_details_btn_cart"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="@dimen/backButtonSize"
+        android:layout_height="@dimen/backButtonSize"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/background_btn_main"
@@ -158,7 +158,7 @@
             android:id="@+id/cart_btn_checkout"
             style="@style/TextButtonCart"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="@dimen/cartButtonHeight"
             android:layout_marginHorizontal="44dp"
             android:layout_marginBottom="24dp"
             android:text="@string/checkout"

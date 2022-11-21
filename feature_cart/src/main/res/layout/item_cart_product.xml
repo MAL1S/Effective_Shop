@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/item_cart_product_iv_image"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/cartItemSize"
+        android:layout_height="@dimen/cartItemSize"
         tools:src="@drawable/ic_image_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
