@@ -59,7 +59,10 @@ class ShopFragment: Fragment(R.layout.fragment_shop) {
                     binding.shopBtnAddTvCartPrice.text = resources.getString(ru.malis.core_style.R.string.cart_price, product.price!!)
                 }
                 if (product?.color != null) {
-                    binding.shopColorLayout.setColors(product.color!!)
+                    binding.shopCheckableColorView.setColors(product.color!!)
+                }
+                if (product?.capacity != null) {
+                    binding.shopCheckableTextView.setLabels(product.capacity!!.map { "$it GB" })
                 }
             }
         }

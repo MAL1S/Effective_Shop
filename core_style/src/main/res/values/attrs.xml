@@ -6,4 +6,7 @@
     <attr name="textSecondColor" format="color"/>
     <attr name="selectedIconColor" format="color"/>
     <attr name="iconColor" format="color"/>
+    <declare-styleable name="CheckableTextView">
+        <attr name="selectedColor" format="color"/>
+    </declare-styleable>
 </resources>

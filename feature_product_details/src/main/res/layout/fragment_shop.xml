@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -109,33 +109,31 @@
             app:layout_constraintTop_toBottomOf="@+id/shop_tv_processor" />
 
         <ru.malis.feature_product_details.api.CheckableColorView
-            android:id="@+id/shop_color_layout"
+            android:id="@+id/shop_checkable_color_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:layout_marginTop="14dp"
-            android:layout_marginEnd="34dp"
-            app:layout_constraintEnd_toStartOf="@+id/shop_flexbox_capacity"
+            app:layout_constraintEnd_toStartOf="@+id/shop_checkable_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shop_tv_select_color_and_capacity" />
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/shop_flexbox_capacity"
+        <ru.malis.feature_product_details.api.CheckableTextView
+            android:id="@+id/shop_checkable_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="34dp"
+            app:selectedColor="@color/red_main"
             android:layout_marginTop="14dp"
-            android:layout_marginEnd="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shop_tv_select_color_and_capacity"
-            app:layout_constraintWidth_percent="0.3" />
+            app:layout_constraintWidth_percent="0.5" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/color_and_capacity_barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="shop_color_layout, shop_flexbox_capacity" />
+            app:constraint_referenced_ids="shop_checkable_color_view, shop_checkable_text_view" />
 
         <FrameLayout
             android:id="@+id/shop_btn_add_to_cart"
@@ -170,4 +168,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -16,7 +16,7 @@ import com.google.android.flexbox.FlexboxLayout
 import ru.malis.core_util.dimens.dp
 import ru.malis.feature_product_details.R
 
-private val COLOR_CARD_VIEW = "COLOR_CARD_VIEW"
+private const val COLOR_CARD_VIEW = "COLOR_CARD_VIEW"
 
 class CheckableColorView : FlexboxLayout {
 
@@ -53,7 +53,7 @@ class CheckableColorView : FlexboxLayout {
             addColorView(index, Color.parseColor(color))
         }
 
-        updateChosenViews(-1)
+        updateChosenViews(0)
     }
 
     private fun addColorView(index: Int, color: Int) {
