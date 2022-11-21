@@ -34,6 +34,8 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private var recyclerViewState: Parcelable? = null
 
+    private var resultPrice: Int = 0
+
     private val cartItemListAdapter = CartItemListAdapter(object : OnCartItemClickedListener {
 
         override fun onAddClicked(cartItem: CartItem) {
@@ -82,7 +84,18 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
                 binding.cartTvEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
                 binding.cartRcvProducts.visibility = if (it.isNotEmpty()) View.VISIBLE else View.INVISIBLE
-                binding.cartRcvProducts.layoutManager?.onRestoreInstanceState(recyclerViewState);
+                binding.cartRcvProducts.layoutManager?.onRestoreInstanceState(recyclerViewState)
+
+                resultPrice = 0
+
+                for (item in it) {
+                    resultPrice += item.price * item.amount
+                }
+
+                binding.cartTvTotalResult.text = resources.getString(
+                    ru.malis.core_style.R.string.cart_price,
+                    resultPrice
+                )
             }
         }
     }

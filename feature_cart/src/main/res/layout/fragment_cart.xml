@@ -160,7 +160,7 @@
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginHorizontal="44dp"
-            android:layout_marginBottom="44dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/checkout"
             android:textAllCaps="false"
             app:cornerRadius="10dp"
