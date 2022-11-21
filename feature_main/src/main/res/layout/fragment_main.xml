@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/ic_geo"
-        android:drawableEnd="@drawable/ic_arrow_down"
         android:drawablePadding="12dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxWidth="200dp"
         android:maxLines="1"
-        android:text="Zihuatanejo, Gro"
+        android:text="@string/example_geo"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:drawableStartCompat="@drawable/ic_geo"
+        app:drawableEndCompat="@drawable/ic_arrow_down" />
 
     <ImageButton
         android:id="@+id/main_btn_filter"
