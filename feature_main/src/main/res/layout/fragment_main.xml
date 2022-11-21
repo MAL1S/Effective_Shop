@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/ic_geo"
-        android:drawableEnd="@drawable/ic_arrow_down"
         android:drawablePadding="12dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxWidth="200dp"
         android:maxLines="1"
-        android:text="Zihuatanejo, Gro"
+        android:text="@string/example_geo"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:drawableStartCompat="@drawable/ic_geo"
+        app:drawableEndCompat="@drawable/ic_arrow_down" />
 
     <ImageButton
         android:id="@+id/main_btn_filter"
@@ -46,7 +46,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="18dp"
         android:text="@string/select_category"
-        android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_tv_geo_place" />
 
@@ -87,7 +86,7 @@
         android:background="@drawable/background_search"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="12dp"
-        android:elevation="20dp"
+        android:elevation="@dimen/elevationMedium"
         android:hint="Search"
         android:paddingStart="24dp"
         android:textColor="@color/blue_main"
@@ -101,7 +100,7 @@
         android:layout_height="34dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/background_circle_button"
-        android:elevation="20dp"
+        android:elevation="@dimen/elevationMedium"
         android:src="@drawable/ic_scan_qr"
         app:layout_constraintBottom_toBottomOf="@+id/main_et_search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,8 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="18dp"
-                    android:text="@string/hot_sales"
-                    android:textSize="26sp" />
+                    android:text="@string/hot_sales" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/main_btn_see_more_hot_sales"
@@ -174,8 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="18dp"
-                    android:text="@string/best_seller"
-                    android:textSize="26sp" />
+                    android:text="@string/best_seller"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/main_btn_see_more_best_seller"

@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import ru.malis.effectiveshop.MainActivity
+import ru.malis.feature_cart.api.CartDeps
 import ru.malis.feature_main.api.MainDeps
 import ru.malis.feature_product_details.api.ProductDetailsDeps
 import javax.inject.Qualifier
@@ -21,7 +22,7 @@ annotation class AppScope
         NavigationModule::class
     ]
 )]
-interface AppComponent : MainDeps, ProductDetailsDeps {
+interface AppComponent : MainDeps, ProductDetailsDeps, CartDeps {
 
     @Component.Factory
     interface Factory {

@@ -8,13 +8,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_category_background"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="@dimen/categoryIconSize"
+        android:layout_height="@dimen/categoryIconSize"
         android:backgroundTint="@drawable/selector_selected_background"
-        android:elevation="20dp"
+        android:elevation="@dimen/elevationMedium"
         android:layout_margin="2dp"
         android:orientation="vertical"
-        app:cardCornerRadius="100dp">
+        app:cardCornerRadius="@dimen/cornerCardRadius">
 
         <ImageView
             android:id="@+id/item_category_iv"

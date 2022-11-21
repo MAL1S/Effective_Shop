@@ -48,6 +48,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
     private val componentViewModel: MainComponentViewModel by viewModels()
 
+    private var stateAlive: Boolean = false
+
     private val categoryAdapter = CategoryListAdapter { categories, currentCategory ->
         val newCategories = categories.map {
             if (it.id == currentCategory.id) {
@@ -65,7 +67,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val bestSellerAdapter = BestSellerListAdapter(object : OnBestSellerClickListener {
         override fun onItemClicked(bestSeller: BestSeller) {
-            mainViewModel.navigateToProductDetails(this@MainFragment)
+            mainViewModel.navigateToProductDetails(this@MainFragment, bestSeller)
         }
 
         override fun onFavoriteClicked(
@@ -97,13 +99,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onResume() {
         super.onResume()
 
-        binding.mainRcvHotSales.layoutManager?.scrollToPosition(Int.MAX_VALUE / 2)
+        if (stateAlive) {
+            binding.mainRcvHotSales.initialize(hotSaleAdapter)
+            binding.mainRcvHotSales.adapter?.notifyDataSetChanged()
+            binding.mainRcvHotSales.layoutManager?.scrollToPosition(-1)
 
-        val smoothScroller = CenterSmoothScroller(requireContext())
-        smoothScroller.targetPosition = Int.MAX_VALUE / 2
-        binding.mainRcvHotSales.layoutManager?.startSmoothScroll(
-            smoothScroller
-        )
+            val smoothScroller = CenterSmoothScroller(requireContext())
+            smoothScroller.targetPosition = Int.MAX_VALUE / 2
+            binding.mainRcvHotSales.layoutManager?.startSmoothScroll(
+                smoothScroller
+            )
+        }
+
+        stateAlive = true
     }
 
     private fun init() {
@@ -115,9 +123,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initNavigation() {
         binding.bottomNav.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.cart -> binding.mainBottomNav.visibility = View.GONE
-//            }
+            when (it.itemId) {
+                R.id.cart -> mainViewModel.navigateToCart(this)
+            }
             false
         }
     }

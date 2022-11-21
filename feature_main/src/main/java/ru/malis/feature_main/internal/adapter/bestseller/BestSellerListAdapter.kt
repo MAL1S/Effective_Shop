@@ -1,24 +1,25 @@
 package ru.malis.feature_main.internal.adapter.bestseller
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.malis.feature_main.R
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import ru.malis.core_domain.models.BestSeller
+import ru.malis.feature_main.R
 import ru.malis.feature_main.databinding.ItemBestSellerBinding
 import ru.malis.core_style.R as style
 
 internal class BestSellerListAdapter(
     private val onBestSellerClickListener: OnBestSellerClickListener
-): RecyclerView.Adapter<BestSellerListAdapter.BestSellerViewHolder>() {
+) : RecyclerView.Adapter<BestSellerListAdapter.BestSellerViewHolder>() {
 
     inner class BestSellerViewHolder(
         inflater: LayoutInflater,
         private val parent: ViewGroup,
         private val onBestSellerClickListener: OnBestSellerClickListener
-    ): RecyclerView.ViewHolder(inflater.inflate(R.layout.item_best_seller, parent, false)) {
+    ) : RecyclerView.ViewHolder(inflater.inflate(R.layout.item_best_seller, parent, false)) {
 
         private val binding by viewBinding(ItemBestSellerBinding::bind)
 
@@ -28,16 +29,25 @@ internal class BestSellerListAdapter(
             }
 
             binding.apply {
-                itemBestSellerTvPriceCurrent.text = bestSeller.discountPrice.toString()
-                itemBestSellerTvPriceBefore.text = bestSeller.priceWithoutDiscount.toString()
+                itemBestSellerTvPriceCurrent.text = parent.context.resources.getString(
+                    ru.malis.core_style.R.string.cart_price,
+                    bestSeller.price
+                )
+                itemBestSellerTvPriceBefore.text = parent.context.resources.getString(
+                    ru.malis.core_style.R.string.cart_price,
+                    bestSeller.priceWithoutDiscount
+                )
+                itemBestSellerTvPriceBefore.paintFlags =
+                    itemBestSellerTvPriceBefore.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
                 itemBestSellerTitle.text = bestSeller.title
                 itemBestSellerBtnFavorite.isActivated = bestSeller.isFavorites
-                
+
                 itemBestSellerBtnFavorite.setOnClickListener {
                     onBestSellerClickListener.onFavoriteClicked(bestSellers, bestSeller)
                 }
             }
-            
+
             itemView.setOnClickListener(null)
             itemView.setOnClickListener {
                 onBestSellerClickListener.onItemClicked(bestSeller)
@@ -70,6 +80,6 @@ internal class BestSellerListAdapter(
 internal interface OnBestSellerClickListener {
 
     fun onItemClicked(bestSeller: BestSeller)
-    
+
     fun onFavoriteClicked(bestSellers: List<BestSeller>, checkedBestSeller: BestSeller)
 }

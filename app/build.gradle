@@ -43,6 +43,7 @@ dependencies {
     implementation project(':core_util')
     implementation project(':feature_main')
     implementation project(':feature_product_details')
+    implementation project(':feature_cart')
 
     implementation daggerDependencies.dagger
     kapt daggerDependencies.dagger_compiler

@@ -9,6 +9,7 @@ import ru.malis.core_domain.models.BestSeller
 import ru.malis.core_domain.models.Category
 import ru.malis.core_domain.models.HotSale
 import ru.malis.core_domain.models.Product
+import ru.malis.core_domain.models.base.BaseProductClass
 import ru.malis.core_domain.usecase.category.GetCategoriesUseCase
 import ru.malis.core_domain.usecase.product.GetProductUseCase
 import ru.malis.feature_main.api.MainFragment
@@ -56,8 +57,6 @@ class MainViewModel @Inject constructor(
                 null
             }
 
-            Log.d("testing", "$product")
-
             if (product != null) {
                 _hotSalesSharedFlow.emit(product.hotSale)
                 _bestSellerSharedFlow.emit(product.bestSale)
@@ -65,7 +64,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun navigateToProductDetails(fragment: MainFragment) {
-        mainNavigation.navigateToProductDetails(fragment, 0)
+    fun navigateToCart(fragment: MainFragment) {
+        mainNavigation.navigateToCart(fragment)
+    }
+
+    fun navigateToProductDetails(fragment: MainFragment, baseProductClass: BaseProductClass) {
+        mainNavigation.navigateToProductDetails(fragment, baseProductClass)
     }
 }

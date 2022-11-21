@@ -10,8 +10,8 @@
 
     <ImageButton
         android:id="@+id/filter_btn_cancel"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="@dimen/backButtonSize"
+        android:layout_height="@dimen/backButtonSize"
         android:layout_marginStart="44dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/background_btn_cancel"
@@ -24,7 +24,7 @@
         android:id="@+id/filter_btn_done"
         style="@style/ButtonText"
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
+        android:layout_height="@dimen/backButtonSize"
         android:layout_marginEnd="20dp"
         android:background="@drawable/background_btn_main"
         android:backgroundTint="?attr/mainColor"

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/blue_main"
+    android:layout_marginBottom="16dp"
+    android:paddingVertical="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/item_cart_product_iv_image"
+        android:layout_width="@dimen/cartItemSize"
+        android:layout_height="@dimen/cartItemSize"
+        tools:src="@drawable/ic_image_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_cart_product_tv_name"
+        style="@style/TextCartProductListItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        app:layout_constraintEnd_toStartOf="@+id/item_cart_product_layout_manage_amount"
+        app:layout_constraintStart_toEndOf="@+id/item_cart_product_iv_image"
+        app:layout_constraintTop_toTopOf="@+id/item_cart_product_layout_manage_amount"
+        tools:text="Galaxy Note 20 Ultra" />
+
+    <TextView
+        android:id="@+id/item_cart_product_tv_price"
+        style="@style/TextCartItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/item_cart_product_layout_manage_amount"
+        app:layout_constraintStart_toStartOf="@+id/item_cart_product_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_cart_product_tv_name"
+        tools:text="$3000.00" />
+
+    <ImageButton
+        android:id="@+id/item_cart_product_btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/item_cart_product_layout_manage_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_cart_product_layout_manage_amount"
+        app:tint="@color/gray_light" />
+
+    <LinearLayout
+        android:id="@+id/item_cart_product_layout_manage_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/background_cart_product_manage_amount"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item_cart_product_btn_delete"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/item_cart_product_btn_remove_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="14dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_minus" />
+
+        <TextView
+            android:id="@+id/item_cart_product_tv_amount"
+            style="@style/TextCartProductListItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:text="2" />
+
+        <ImageButton
+            android:id="@+id/item_cart_product_btn_add_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_plus" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

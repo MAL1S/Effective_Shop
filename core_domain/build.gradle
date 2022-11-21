@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 apply from: "$rootDir/dependencies.gradle"
@@ -40,6 +41,8 @@ dependencies {
     implementation annotationDependencies.annotation
 
     implementation retrofitDependencies.retrofit_converter_gson
+
+    implementation coroutinesDependencies.coroutines
 
     testImplementation 'junit:junit:4.13.2'
 }

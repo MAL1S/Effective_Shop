@@ -3,10 +3,13 @@ package ru.malis.effectiveshop.di
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
+import ru.malis.core_data.repository.CartRepositoryImpl
 import ru.malis.core_domain.repository.CategoryRepository
 import ru.malis.core_data.repository.CategoryRepositoryImpl
 import ru.malis.core_data.repository.ProductRepositoryImpl
+import ru.malis.core_database.dao.CartItemDao
 import ru.malis.core_database.dao.CategoryDao
+import ru.malis.core_domain.repository.CartRepository
 import ru.malis.core_domain.repository.ProductRepository
 import ru.malis.core_network.api.ProductApi
 import ru.malis.core_util.coroutinedispatchers.IoDispatcher
@@ -32,6 +35,15 @@ interface DataModule {
             @IoDispatcher IODispatcher: CoroutineDispatcher
         ): ProductRepository {
             return ProductRepositoryImpl(productApi, IODispatcher)
+        }
+
+        @AppScope
+        @Provides
+        fun provideCartRepository(
+            cartItemDao: CartItemDao,
+            @IoDispatcher IODispatcher: CoroutineDispatcher
+        ): CartRepository {
+            return CartRepositoryImpl(cartItemDao, IODispatcher)
         }
     }
 }

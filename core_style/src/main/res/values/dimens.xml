@@ -3,4 +3,11 @@
     <dimen name="categoryListHorizontalMargin">16dp</dimen>
     <dimen name="listHorizontalMargin">16dp</dimen>
     <dimen name="hotSaleListHorizontalMargin">4dp</dimen>
+    <dimen name="hotSaleNewIconSize">36dp</dimen>
+    <dimen name="backButtonSize">38dp</dimen>
+    <dimen name="categoryIconSize">72dp</dimen>
+    <dimen name="cornerCardRadius">72dp</dimen>
+    <dimen name="elevationMedium">72dp</dimen>
+    <dimen name="cartButtonHeight">64dp</dimen>
+    <dimen name="cartItemSize">90dp</dimen>
 </resources>

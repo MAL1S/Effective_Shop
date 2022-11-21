@@ -21,6 +21,10 @@
         <item name="iconColor">@color/gray_dark</item>
     </style>
 
+    <style name="Theme.EffectiveShop.Splash" parent="Theme.EffectiveShop">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="Theme.EffectiveShop.WhiteButton" parent="Theme.EffectiveShop">
         <item name="colorPrimary">@color/white</item>
     </style>
