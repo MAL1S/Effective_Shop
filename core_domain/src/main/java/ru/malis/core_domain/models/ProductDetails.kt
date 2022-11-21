@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import ru.malis.core_domain.models.base.BaseIdClass
 
 data class ProductDetails(
-    override val id: Int? = null,
+    override val id: Int = 0,
     @SerializedName("CPU") val cpu: String? = null,
     val camera: String? = null,
     val capacity: List<String>? = null,

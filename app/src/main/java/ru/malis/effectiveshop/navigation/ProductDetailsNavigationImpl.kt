@@ -1,6 +1,7 @@
 package ru.malis.effectiveshop.navigation
 
 import ru.malis.core_domain.models.ProductDetails
+import ru.malis.effectiveshop.navigation.Routes.navigateToCart
 import ru.malis.effectiveshop.navigation.Routes.navigateToProductDetails
 import ru.malis.effectiveshop.navigation.Routes.popBackStack
 import ru.malis.feature_main.api.MainFragment
@@ -13,5 +14,9 @@ class ProductDetailsNavigationImpl @Inject constructor(): ProductDetailsNavigati
 
     override fun navigateBackToMain(fragment: ProductDetailsFragment) {
         fragment.popBackStack()
+    }
+
+    override fun navigateToCart(fragment: ProductDetailsFragment) {
+        fragment.navigateToCart()
     }
 }

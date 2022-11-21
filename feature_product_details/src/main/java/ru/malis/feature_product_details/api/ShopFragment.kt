@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.Lazy
 import ru.malis.core_base.CenterSmoothScroller
+import ru.malis.core_domain.models.CartItem
 import ru.malis.feature_product_details.R
 import ru.malis.feature_product_details.databinding.FragmentProductDetailsBinding
 import ru.malis.feature_product_details.databinding.FragmentShopBinding
@@ -20,7 +21,7 @@ import ru.malis.feature_product_details.internal.ProductDetailsViewModel
 import ru.malis.feature_product_details.internal.ProductDetailsViewModelFactory
 import javax.inject.Inject
 
-class ShopFragment: Fragment(R.layout.fragment_shop) {
+class ShopFragment : Fragment(R.layout.fragment_shop) {
 
     @Inject
     internal lateinit var productDetailsViewModelFactory: Lazy<ProductDetailsViewModelFactory>
@@ -51,24 +52,38 @@ class ShopFragment: Fragment(R.layout.fragment_shop) {
     private fun initInfo() {
         lifecycleScope.launchWhenStarted {
             productDetailsViewModel.productDetailsSharedFlow.collect { product ->
-                binding.shopTvProcessor.text = product?.cpu
-                binding.shopTvCamera.text = product?.camera
-                binding.shopTvRam.text = product?.ssd
-                binding.shopTvMemoryCard.text = product?.sd
-                if (product?.price != null) {
-                    binding.shopBtnAddTvCartPrice.text = resources.getString(ru.malis.core_style.R.string.cart_price, product.price!!)
+                if (product == null) return@collect
+                binding.shopTvProcessor.text = product.cpu
+                binding.shopTvCamera.text = product.camera
+                binding.shopTvRam.text = product.ssd
+                binding.shopTvMemoryCard.text = product.sd
+                if (product.price != null) {
+                    binding.shopTvAddToCartPrice.text = resources.getString(
+                        ru.malis.core_style.R.string.cart_price,
+                        product.price!!
+                    )
                 }
-                if (product?.color != null) {
+                if (product.color != null) {
                     binding.shopCheckableColorView.setColors(product.color!!)
                 }
-                if (product?.capacity != null) {
+                if (product.capacity != null) {
                     binding.shopCheckableTextView.setLabels(product.capacity!!.map { "$it GB" })
+                }
+
+                if (productDetailsViewModel.baseProduct != null) {
+                    binding.shopBtnAddToCart.setOnClickListener {
+                        productDetailsViewModel.insertCartItem(
+                            CartItem(
+                                id = productDetailsViewModel.baseProduct!!.id,
+                                name = productDetailsViewModel.baseProduct!!.title!!,
+                                price = productDetailsViewModel.baseProduct!!.price!!,
+                                amount = 1,
+                                imageUrl = productDetailsViewModel.baseProduct!!.pictureUrl!!
+                            )
+                        )
+                    }
                 }
             }
         }
-    }
-
-    private fun initColors() {
-
     }
 }

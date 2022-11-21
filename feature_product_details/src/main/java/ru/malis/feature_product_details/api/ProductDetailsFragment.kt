@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.Lazy
 import ru.malis.core_base.CenterSmoothScroller
 import ru.malis.core_base.HorizontalSpaceItemDecorator
+import ru.malis.core_domain.models.base.BaseProductClass
 import ru.malis.feature_product_details.R
 import ru.malis.feature_product_details.databinding.FragmentProductDetailsBinding
 import ru.malis.feature_product_details.internal.*
@@ -27,6 +28,20 @@ import ru.malis.feature_product_details.internal.ProductImagesListAdapter
 import javax.inject.Inject
 
 class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
+
+    companion object {
+
+        private const val PRODUCT = "PRODUCT"
+
+        fun newInstance(baseProductClass: BaseProductClass): ProductDetailsFragment {
+            val args = Bundle().apply {
+                putParcelable(PRODUCT, baseProductClass)
+            }
+            val fragment = ProductDetailsFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     @Inject
     internal lateinit var productDetailsViewModelFactory: Lazy<ProductDetailsViewModelFactory>
@@ -48,6 +63,9 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bundle = requireArguments()
+        productDetailsViewModel.baseProduct = bundle.getParcelable(PRODUCT)
+
         init()
     }
 
@@ -57,6 +75,10 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
         binding.productDetailsBtnBack.setOnClickListener {
             productDetailsViewModel.navigateBack(this)
+        }
+
+        binding.productDetailsBtnCart.setOnClickListener {
+            productDetailsViewModel.navigateToCart(this)
         }
     }
 

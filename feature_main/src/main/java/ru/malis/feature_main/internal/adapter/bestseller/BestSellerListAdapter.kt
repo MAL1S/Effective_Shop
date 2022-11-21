@@ -28,7 +28,7 @@ internal class BestSellerListAdapter(
             }
 
             binding.apply {
-                itemBestSellerTvPriceCurrent.text = bestSeller.discountPrice.toString()
+                itemBestSellerTvPriceCurrent.text = bestSeller.price.toString()
                 itemBestSellerTvPriceBefore.text = bestSeller.priceWithoutDiscount.toString()
                 itemBestSellerTitle.text = bestSeller.title
                 itemBestSellerBtnFavorite.isActivated = bestSeller.isFavorites

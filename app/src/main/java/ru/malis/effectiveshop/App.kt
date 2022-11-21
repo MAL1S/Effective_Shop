@@ -3,12 +3,14 @@ package ru.malis.effectiveshop
 import android.app.Application
 import ru.malis.effectiveshop.di.AppComponent
 import ru.malis.effectiveshop.di.DaggerAppComponent
+import ru.malis.feature_cart.api.CartDeps
+import ru.malis.feature_cart.api.CartDepsProvider
 import ru.malis.feature_main.api.MainDeps
 import ru.malis.feature_main.api.MainDepsProvider
 import ru.malis.feature_product_details.api.ProductDetailsDeps
 import ru.malis.feature_product_details.api.ProductDetailsDepsProvider
 
-class App: Application(), MainDepsProvider, ProductDetailsDepsProvider {
+class App : Application(), MainDepsProvider, ProductDetailsDepsProvider, CartDepsProvider {
 
     companion object {
         internal lateinit var INSTANCE: App
@@ -29,4 +31,5 @@ class App: Application(), MainDepsProvider, ProductDetailsDepsProvider {
 
     override val mainDeps: MainDeps = appComponent
     override val productDetailsDeps: ProductDetailsDeps = appComponent
+    override val cartDeps: CartDeps = appComponent
 }

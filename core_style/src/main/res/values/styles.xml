@@ -46,6 +46,12 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="TextTitle3">
+        <item name="android:fontFamily">@font/mark_pro_medium</item>
+        <item name="android:textColor">?attr/textMainColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="TextIconTitle">
         <item name="android:fontFamily">@font/mark_pro_medium</item>
         <item name="android:textColor">?attr/textMainColor</item>
@@ -56,6 +62,12 @@
         <item name="android:fontFamily">@font/mark_pro_bold</item>
         <item name="android:textColor">?attr/textMainColor</item>
         <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="TextTitle4">
+        <item name="android:fontFamily">@font/mark_pro_bold</item>
+        <item name="android:textColor">?attr/textMainColor</item>
+        <item name="android:textSize">34sp</item>
     </style>
 
     <style name="TextButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
@@ -104,5 +116,29 @@
         <item name="android:fontFamily">@font/mark_pro_bold</item>
         <item name="android:textColor">?attr/textSecondColor</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextCartInfo">
+        <item name="android:fontFamily">@font/mark_pro_regular</item>
+        <item name="android:textColor">?attr/textSecondColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextCartInfoResult">
+        <item name="android:fontFamily">@font/mark_pro_bold</item>
+        <item name="android:textColor">?attr/textSecondColor</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextCartProductListItem">
+        <item name="android:fontFamily">@font/mark_pro_medium</item>
+        <item name="android:textColor">?attr/textSecondColor</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextCartItemPrice">
+        <item name="android:fontFamily">@font/mark_pro_medium</item>
+        <item name="android:textColor">?attr/mainColor</item>
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>

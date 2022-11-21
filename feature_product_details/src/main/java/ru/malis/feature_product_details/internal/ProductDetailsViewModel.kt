@@ -9,13 +9,20 @@ import java.lang.Exception
 import javax.inject.Inject
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import ru.malis.core_domain.models.CartItem
+import ru.malis.core_domain.models.base.BaseProductClass
+import ru.malis.core_domain.usecase.cart.InsertCartItemUseCase
+import ru.malis.core_domain.usecase.cart.InsertCartItemUseCase_Factory
 import ru.malis.feature_product_details.api.ProductDetailsFragment
 import ru.malis.feature_product_details.api.ProductDetailsNavigation
 
 internal class ProductDetailsViewModel @Inject constructor(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
-    private val productDetailsNavigation: ProductDetailsNavigation
+    private val productDetailsNavigation: ProductDetailsNavigation,
+    private val insertCartItemUseCase: InsertCartItemUseCase
 ): ViewModel() {
+
+    var baseProduct: BaseProductClass? = null
 
     private val _productDetailsSharedFlow = MutableSharedFlow<ProductDetails?>()
     val productDetailsSharedFlow = _productDetailsSharedFlow.asSharedFlow()
@@ -30,6 +37,16 @@ internal class ProductDetailsViewModel @Inject constructor(
 
             _productDetailsSharedFlow.emit(productDetails)
         }
+    }
+
+    fun insertCartItem(cartItem: CartItem) {
+        viewModelScope.launch {
+            insertCartItemUseCase.invoke(cartItem)
+        }
+    }
+
+    fun navigateToCart(fragment: ProductDetailsFragment) {
+        productDetailsNavigation.navigateToCart(fragment)
     }
 
     fun navigateBack(fragment: ProductDetailsFragment) {

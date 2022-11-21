@@ -65,7 +65,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val bestSellerAdapter = BestSellerListAdapter(object : OnBestSellerClickListener {
         override fun onItemClicked(bestSeller: BestSeller) {
-            mainViewModel.navigateToProductDetails(this@MainFragment)
+            mainViewModel.navigateToProductDetails(this@MainFragment, bestSeller)
         }
 
         override fun onFavoriteClicked(
@@ -115,9 +115,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initNavigation() {
         binding.bottomNav.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.cart -> binding.mainBottomNav.visibility = View.GONE
-//            }
+            when (it.itemId) {
+                R.id.cart -> mainViewModel.navigateToCart(this)
+            }
             false
         }
     }
