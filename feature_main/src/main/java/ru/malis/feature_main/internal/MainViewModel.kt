@@ -5,11 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import ru.malis.core_domain.models.BestSeller
-import ru.malis.core_domain.models.Category
-import ru.malis.core_domain.models.HotSale
-import ru.malis.core_domain.models.Product
+import ru.malis.core_domain.models.*
 import ru.malis.core_domain.models.base.BaseProductClass
+import ru.malis.core_domain.usecase.cart.GetCartItemsUseCase
 import ru.malis.core_domain.usecase.category.GetCategoriesUseCase
 import ru.malis.core_domain.usecase.product.GetProductUseCase
 import ru.malis.feature_main.api.MainFragment
@@ -20,7 +18,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val getProductUseCase: GetProductUseCase,
-    private val mainNavigation: MainNavigation
+    private val mainNavigation: MainNavigation,
+    private val getCartItemsUseCase: GetCartItemsUseCase
 ) : ViewModel() {
 
     private val _categoriesSharedFlow: MutableStateFlow<List<Category>> =
@@ -70,5 +69,9 @@ class MainViewModel @Inject constructor(
 
     fun navigateToProductDetails(fragment: MainFragment, baseProductClass: BaseProductClass) {
         mainNavigation.navigateToProductDetails(fragment, baseProductClass)
+    }
+
+    fun getCartItems(): Flow<List<CartItem>> {
+        return getCartItemsUseCase.invoke()
     }
 }

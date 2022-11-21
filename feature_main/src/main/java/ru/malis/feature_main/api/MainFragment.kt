@@ -8,6 +8,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.TouchDelegate
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -119,6 +120,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         initProduct()
         initFilters()
         initNavigation()
+
+        lifecycleScope.launchWhenStarted {
+            mainViewModel.getCartItems().collect {
+                val badge = binding.bottomNav.getOrCreateBadge(R.id.cart)
+                badge.isVisible = it.isNotEmpty()
+                badge.number = it.size
+                badge.backgroundColor = ContextCompat.getColor(requireContext(), ru.malis.core_style.R.color.red_main)
+            }
+        }
     }
 
     private fun initNavigation() {
