@@ -4,15 +4,19 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.core.view.setPadding
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayout
 import ru.malis.core_util.dimens.dp
 import ru.malis.feature_product_details.R
+
+private val COLOR_CARD_VIEW = "COLOR_CARD_VIEW"
 
 class CheckableColorView : FlexboxLayout {
 
@@ -45,12 +49,14 @@ class CheckableColorView : FlexboxLayout {
         }
 
         container.removeAllViews()
-        for (color in colors) {
-            addColorView(Color.parseColor(color))
+        for ((index, color) in colors.withIndex()) {
+            addColorView(index, Color.parseColor(color))
         }
+
+        updateChosenViews(-1)
     }
 
-    private fun addColorView(color: Int) {
+    private fun addColorView(index: Int, color: Int) {
         val colorCardView = CardView(context)
         val chosenImageView = ImageView(context)
         chosenImageView.setImageDrawable(
@@ -62,6 +68,7 @@ class CheckableColorView : FlexboxLayout {
         chosenImageView.setPadding(12.dp(context))
         chosenImageView.layoutParams =
             LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        chosenImageView.tag="chosenImageView"
         colorCardView.addView(chosenImageView)
         colorCardView.preventCornerOverlap = true
         colorCardView.radius = 100f
@@ -73,9 +80,22 @@ class CheckableColorView : FlexboxLayout {
         colorCardView.setCardBackgroundColor(color)
 
         colorCardView.setOnClickListener {
-            Log.d("testing", "$focusedChild")
+            updateChosenViews(it.tag.toString().substring(COLOR_CARD_VIEW.length).toInt())
         }
 
+        colorCardView.tag = "$COLOR_CARD_VIEW$index"
         container.addView(colorCardView)
+    }
+
+    private fun updateChosenViews(chosenId: Int) {
+        for (childPosition in 0 until container.childCount) {
+            setChosen(childPosition, chosenId == childPosition)
+        }
+    }
+
+    private fun setChosen(position: Int, isChosen: Boolean) {
+        val child = container.getChildAt(position)
+        val imageView = child.findViewWithTag<ImageView>("chosenImageView") ?: return
+        imageView.visibility = if (isChosen) View.VISIBLE else View.INVISIBLE
     }
 }
