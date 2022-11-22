@@ -142,7 +142,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun initCategories() {
         binding.mainRcvCategories.apply {
-            //adapter = categoryAdapter
+            adapter = categoryAdapter
             addItemDecoration(CategorySpaceItemDecorator())
         }
 
